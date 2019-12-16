@@ -43,3 +43,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "jwt", "~> 2.2"
 
 gem "active_model_serializers", "~> 0.10.10"
+
+gem "faraday", "~> 0.17.1"
+
+gem "mtg_sdk", "~> 3.2"
