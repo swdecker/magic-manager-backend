@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
       post '/cards', to: 'cards#search'
+      post '/cards/:id', to: 'cards#collect'
     end
   end
 end
