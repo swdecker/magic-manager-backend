@@ -10,7 +10,7 @@ class Api::V1::CardsController < ApplicationController
 
         unless card 
             cards = MTG::Card.where(name: card_params[:cardName]).all
-            
+            puts cards
             if cards && cards.length > 0 
                 i = 0
                 while i < cards.length 
@@ -41,7 +41,16 @@ class Api::V1::CardsController < ApplicationController
 
     def collect
         card = Card.find(params[:id])
-        user_card = UserCard.new(card: card, user: current_user, num_owned: user_card_params[:card][:num_owned]) 
+        user_cards = UserCard.where(user:current_user)
+        already_owned = user_cards.select{|user_card| user_card.card_id == card.id}
+        
+        if already_owned.length>0
+            user_card = already_owned.first
+            user_card.num_owned += user_card_params[:card][:num_owned]
+        else
+            user_card = UserCard.new(card: card, user: current_user, num_owned: user_card_params[:card][:num_owned]) 
+        end
+
         if user_card.save
             render json: user_card, status: :accepted
         else

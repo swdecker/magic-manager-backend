@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
       post '/cards', to: 'cards#search'
       post '/cards/:id', to: 'cards#collect'
+      get '/userCards', to: 'user_cards#index'
     end
   end
 end
