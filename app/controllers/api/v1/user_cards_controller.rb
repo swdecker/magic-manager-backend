@@ -5,7 +5,7 @@ class Api::V1::UserCardsController < ApplicationController
         # collected_cards = current_user.cards.map do |card|
         #     return {name: card.name, }
         # end
-        puts @userCards.to_json(user_card_serializer)
+        # puts @userCards.to_json(user_card_serializer)
         render json: @userCards.to_json(user_card_serializer)
         # { cards: collection, userCards: UserCardSerializer.new(userCards) }
     end
