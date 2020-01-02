@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post '/cards', to: 'cards#search'
       post '/cards/:id', to: 'cards#collect'
       get '/userCards', to: 'user_cards#index'
+      delete '/userCards/:id', to: 'user_cards#destroy'
     end
   end
 end
