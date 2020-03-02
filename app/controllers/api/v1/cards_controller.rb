@@ -42,11 +42,12 @@ class Api::V1::CardsController < ApplicationController
     def collect
         card = Card.find(params[:id])
         user_cards = UserCard.where(user:current_user)
+        puts user_cards
         already_owned = user_cards.select{|user_card| user_card.card_id == card.id}
-        
+        puts already_owned
         if already_owned.length>0
             user_card = already_owned.first
-            user_card.num_owned += user_card_params[:card][:num_owned]
+            user_card.num_owned += user_card_params[:card][:num_owned].to_i
         else
             user_card = UserCard.new(card: card, user: current_user, num_owned: user_card_params[:card][:num_owned]) 
         end
